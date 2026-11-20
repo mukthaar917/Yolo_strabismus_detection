@@ -1,6 +1,6 @@
 YOLO Strabismus Detection 
 
-Automated 2D Facial Image Triage Pipeline Combining YOLOv8 Eye Localization, MediaPipe FaceLandmarker Geometry, and FastAPI Mobile Integration
+Automated 2D Facial Image Triage Pipeline Combining YOLOv8 Eye Localization, MediaPipe FaceLandmarker Geometry, and FastAPI Mobile Integration.
 
 Tech Stack : Python, YOLOv8, MediaPipe, OpenCV, FastAPI
 
@@ -8,7 +8,7 @@ Tech Stack : Python, YOLOv8, MediaPipe, OpenCV, FastAPI
 
 Executive Overview : 
 
-The YOLO Strabismus Detection & Screening API automates preliminary ocular alignment screening from standard 2D frontal facial photographs[cite: 35]. Designed for integration with a Flutter mobile client, the system localizes periocular structures, measures corneal light reflex (CLR) offsets alongside normalized palpebral iris-position asymmetry, and classifies captures into three triage states: POSITIVE, NEEDS_REVIEW, and NEGATIVE.
+The YOLO Strabismus Detection & Screening API automates preliminary ocular alignment screening from standard 2D frontal facial photographs. Designed for integration with a Flutter mobile client, the system localizes periocular structures, measures corneal light reflex (CLR) offsets alongside normalized palpebral iris-position asymmetry, and classifies captures into three triage states: POSITIVE, NEEDS_REVIEW, and NEGATIVE.
 
 Across a 25-image validation benchmark,the pipeline achieved 96.0% triage-aware accuracy (24/25) in its recommended production baseline and 100.0% triage-aware accuracy (25/25)in high-sensitivity mode, with a 0.0% false-positive alert rate (0/8) across all negative control image.
 
