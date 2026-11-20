@@ -82,9 +82,9 @@ def _rotate_points_around(pts_xy, center_xy, angle_rad):
 
 
 class MediaPipeEyeLocator:
-    """Locates eye boxes, iris centers, radii, and roll-compensated palpebral iris ratios."""
+    """Locates eye boxes, iris centers, radii, and palpebral iris ratios."""
 
-    def __init__(self, task_model_path=None, enable_roll_compensation=True):
+    def __init__(self, task_model_path=None, enable_roll_compensation=False):
         self.landmarker = None
         self.backend_name = "Fallback/YOLO"
         self.enable_roll_compensation = enable_roll_compensation
@@ -144,7 +144,7 @@ class MediaPipeEyeLocator:
         if l_iris_f is not None and r_iris_f is not None and len(lms) >= 478:
             l_outer_x, l_outer_y = lms[IMG_LEFT_OUTER_IDX].x * w, lms[IMG_LEFT_OUTER_IDX].y * h
             l_inner_x, l_inner_y = lms[IMG_LEFT_INNER_IDX].x * w, lms[IMG_LEFT_INNER_IDX].y * h
-            r_inner_x, r_inner_y = lms[IMG_RIGHT_INNER_IDX].x * w, lms[IMG_RIGHT_INNER_IDX].x * w
+            r_inner_x, r_inner_y = lms[IMG_RIGHT_INNER_IDX].x * w, lms[IMG_RIGHT_INNER_IDX].y * h
             r_outer_x, r_outer_y = lms[IMG_RIGHT_OUTER_IDX].x * w, lms[IMG_RIGHT_OUTER_IDX].y * h
 
             l_top_x, l_top_y = lms[159].x * w, lms[159].y * h
@@ -153,7 +153,6 @@ class MediaPipeEyeLocator:
             r_bot_x, r_bot_y = lms[374].x * w, lms[374].y * h
 
             if self.enable_roll_compensation:
-                # Level inter-eye axis using outer canthi (or iris centers)
                 dy_eye = r_outer_y - l_outer_y
                 dx_eye = max(1.0, r_outer_x - l_outer_x)
                 roll_angle = float(np.arctan2(dy_eye, dx_eye))
@@ -573,13 +572,31 @@ def classify_strabismus(
         detection_status = "STRABISMUS DETECTED"
         deviation_type = "HORIZONTAL STRABISMUS"
 
-        if iris_horiz_cond and l_med_ratio is not None and r_med_ratio is not None:
-            if l_med_ratio < r_med_ratio:
-                dominant_eye = "Participant's Right Eye"
-                subtype = "ESOTROPIA" if l_med_ratio < 0.44 else "EXOTROPIA"
+        if l_med_ratio is not None and r_med_ratio is not None and iris_horiz_asym >= 0.04:
+            # Smaller ratio = closer to nasal canthus (esotropia)
+            # Larger ratio = closer to temporal/outer canthus (exotropia)
+            nasal_pull_R = max(0.0, 0.48 - l_med_ratio)
+            nasal_pull_L = max(0.0, 0.48 - r_med_ratio)
+            temporal_pull_R = max(0.0, l_med_ratio - 0.52)
+            temporal_pull_L = max(0.0, r_med_ratio - 0.52)
+
+            max_nasal = max(nasal_pull_R, nasal_pull_L)
+            max_temporal = max(temporal_pull_R, temporal_pull_L)
+
+            if max_temporal > max_nasal:
+                subtype = "EXOTROPIA"
+                dominant_eye = (
+                    "Participant's Right Eye"
+                    if temporal_pull_R >= temporal_pull_L
+                    else "Participant's Left Eye"
+                )
             else:
-                dominant_eye = "Participant's Left Eye"
-                subtype = "ESOTROPIA" if r_med_ratio < 0.44 else "EXOTROPIA"
+                subtype = "ESOTROPIA"
+                dominant_eye = (
+                    "Participant's Right Eye"
+                    if nasal_pull_R >= nasal_pull_L
+                    else "Participant's Left Eye"
+                )
         elif abs(dx_L) - abs(dx_R) >= T_dominance:
             dominant_eye = "Participant's Left Eye"
             subtype = "EXOTROPIA" if dx_L > 0 else "ESOTROPIA"
@@ -667,7 +684,7 @@ def process_image_with_yolo(
     T_iris_asym=0.105,
     prefer_horizontal_when_clear=True,
     suppress_false_positives=True,
-    enable_clahe_roi=True,
+    enable_clahe_roi=False,
 ):
     if img_bgr is None or img_bgr.size == 0:
         raise ValueError(f"Invalid or empty image data for: {filename}")
@@ -855,13 +872,13 @@ def _print_confusion_summary(y_true, y_pred):
 
 def main():
     # ========================================================
-    # CONFIGURATION & THRESHOLDS (TUNE AS NEEDED)
+    # CONFIGURATION & THRESHOLDS (PRODUCTION BASELINE)
     # ========================================================
     run_mode = "batch"  # "single" or "batch"
     single_image_path = r"images\1.png"
 
-    enable_roll_compensation = True
-    enable_clahe_roi = True
+    enable_roll_compensation = False
+    enable_clahe_roi = False
 
     t_horiz = 3          # Horizontal Pupil-CLR asymmetry threshold
     t_vert = 5           # Vertical Pupil-CLR asymmetry threshold
@@ -1005,7 +1022,7 @@ def main():
                         print(
                             f"[{processed_count}] [{category_name}] {filename} -> "
                             f"Triage: {res['triage_bucket']} | Dx={res['Dx']}, Dy={res['Dy']}, "
-                            f"IrisAsym={res['iris_horiz_asym']}"
+                            f"IrisAsym={res['iris_horiz_asym']}, Subtype={res['subtype']}"
                         )
             else:
                 for filename in entries:
