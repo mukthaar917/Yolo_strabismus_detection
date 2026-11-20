@@ -149,7 +149,7 @@ High-Sensitivity Mode: Can be enabled per request (high_sensitivity=true) when m
 
 
 
-5Installation & Execution Guide :
+Installation & Execution Guide :
 
 
 Environment Setup (Windows PowerShell)
