@@ -6,14 +6,14 @@ Tech Stack : Python, YOLOv8, MediaPipe, OpenCV, FastAPI
 
 
 
-1. Executive Overview
+Executive Overview : 
 
 The YOLO Strabismus Detection & Screening API automates preliminary ocular alignment screening from standard 2D frontal facial photographs[cite: 35]. Designed for integration with a Flutter mobile client, the system localizes periocular structures, measures corneal light reflex (CLR) offsets alongside normalized palpebral iris-position asymmetry, and classifies captures into three triage states: POSITIVE, NEEDS_REVIEW, and NEGATIVE.
 
 Across a 25-image validation benchmark,the pipeline achieved 96.0% triage-aware accuracy (24/25) in its recommended production baseline and 100.0% triage-aware accuracy (25/25)in high-sensitivity mode, with a 0.0% false-positive alert rate (0/8) across all negative control image.
 
 
-2. System Architecture & Algorithmic Pipeline
+System Architecture & Algorithmic Pipeline :
    
 
 Each input image is standardized to a 512x512 resolution and processed through a five-stage deterministic computer vision pipeline in strabismus_yolo.py:
@@ -31,7 +31,7 @@ Each input image is standardized to a 512x512 resolution and processed through a
 
 
 
-3.  YOLO STRABISMUS DETECTION REPORT
+YOLO STRABISMUS DETECTION REPORT :
 
      
 
@@ -104,8 +104,8 @@ Each input image is standardized to a 512x512 resolution and processed through a
 
 
 
-4.  Mode Selection Notes
-5.  
+Mode Selection Notes :
+
 
 Default Mode: Production Baseline (T_iris_asym = 0.105, RollComp=False, CLAHE=False) is configured as the default API mode because it exceeds the 95% accuracy requirement (96.0%) with 0% false-positive 'POSITIVE` alerts and fewer retakes on clean negatives.
 
@@ -113,7 +113,7 @@ High-Sensitivity Mode: Can be enabled per request (high_sensitivity=true) when m
 
 
 
-5 . Installation & Execution Guide
+5Installation & Execution Guide :
 
 
 Environment Setup (Windows PowerShell)
