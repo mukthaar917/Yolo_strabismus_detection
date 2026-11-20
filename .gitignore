@@ -1,0 +1,15 @@
+# Virtual environment & IDE
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.vscode/
+.idea/
+
+# Generated evaluation outputs
+output/
+*.log
+
+# Model weights & downloaded MediaPipe task files (keep .pt/task out unless small/tracked with LFS)
+weights/*.pt
+weights/*.task
