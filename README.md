@@ -68,8 +68,8 @@ YOLO STRABISMUS DETECTION REPORT :
    Dominant Eye: Participant's Right Eye
 
 
-
-   <img width="512" height="512" alt="result_25" src="https://github.com/user-attachments/assets/1c1965c4-5099-4426-9e08-fdff911af280" />
+   
+  <img width="512" height="512" alt="result_25" src="https://github.com/user-attachments/assets/1c1965c4-5099-4426-9e08-fdff911af280" />
 
 
    
@@ -86,7 +86,39 @@ YOLO STRABISMUS DETECTION REPORT :
    Dominant Eye: None
 
 
-     
+
+   <img width="512" height="512" alt="result_14" src="https://github.com/user-attachments/assets/c3b8efef-69b8-43df-ac55-f884942ae3dd" />
+   
+
+
+   Eye Locator: MediaPipe FaceLandmarker
+   
+   Triage: POSITIVE | Confidence: HIGH | Needs Review: False | Borderline: False
+
+   Status: STRABISMUS DETECTED
+   
+   Deviation Type: HORIZONTAL STRABISMUS
+   
+   Subtype: ESOTROPIA
+   
+   Dominant Eye: Participant's Left Eye
+   
+
+
+   <img width="512" height="512" alt="result_21" src="https://github.com/user-attachments/assets/f4992745-6995-4a35-a618-6216265bee63" />
+
+
+   Eye Locator: MediaPipe FaceLandmarker
+   
+   Triage: POSITIVE | Confidence: HIGH | Needs Review: False | Borderline: FalseStatus: STRABISMUS DETECTED
+
+   Deviation Type: HORIZONTAL STRABISMUS
+   
+   Subtype: ESOTROPIA
+   
+   Dominant Eye: Participant's Left Eye
+
+
 
 MODE SELECTION NOTES :
 
