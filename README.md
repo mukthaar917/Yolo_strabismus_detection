@@ -88,7 +88,7 @@ YOLO STRABISMUS DETECTION REPORT :
 
      
 
-Mode Selection Notes :
+MODE SELECTION NOTES :
 
 
 Default Mode: Production Baseline (T_iris_asym = 0.105, RollComp=False, CLAHE=False) is configured as the default API mode because it exceeds the 95% accuracy requirement (96.0%) with 0% false-positive 'POSITIVE` alerts and fewer retakes on clean negatives.
