@@ -24,11 +24,79 @@ Each input image is standardized to a 512x512 resolution and processed through a
 
 
 
-3. Benchmark Evaluation & Accuracy Results
+3.  YOLO STRABISMUS DETECTION REPORT
+
+     
+
+1. <img width="512" height="512" alt="result_19" src="https://github.com/user-attachments/assets/aec31794-8052-4438-8295-a62cd02c6439" />
 
 
 
-4. Mode Selection Notes
+   Eye Locator: MediaPipe FaceLandmarker
+   
+   Triage: POSITIVE | Confidence: HIGH | Needs Review: False | Borderline: False
+   
+   Status: STRABISMUS DETECTED
+   
+   Deviation Type: HORIZONTAL STRABISMUS
+   
+   Subtype: ESOTROPIA
+   
+   Dominant Eye: Participant's Right Eye
+
+
+2. <img width="512" height="512" alt="result_16" src="https://github.com/user-attachments/assets/c8b9fad2-5e41-4c4d-8dd7-82322bef4f76" />
+
+
+   Eye Locator: MediaPipe FaceLandmarker
+   
+   Triage: POSITIVE | Confidence: HIGH | Needs Review: False | Borderline: False
+   
+   Status: STRABISMUS DETECTED
+   
+   Deviation Type: HORIZONTAL STRABISMUS
+   
+   Subtype: ESOTROPIA
+   
+   Dominant Eye: Participant's Right Eye
+
+
+  4. <img width="512" height="512" alt="result_14" src="https://github.com/user-attachments/assets/6c19b38d-e876-40fd-9822-b753340bf6bb" />
+  
+
+
+      Eye Locator: MediaPipe FaceLandmarker
+     
+     Triage: POSITIVE | Confidence: HIGH | Needs Review: False | Borderline: False
+
+     Status: STRABISMUS DETECTED
+     
+     Deviation Type: HORIZONTAL STRABISMUS
+     
+     Subtype: ESOTROPIA
+     
+     Dominant Eye: Participant's Left Eye
+     
+
+
+5 . <img width="512" height="512" alt="result_24" src="https://github.com/user-attachments/assets/dd7f7425-0ae1-4cb5-9f1c-81bd1aa38c03" />
+
+
+    Eye Locator: MediaPipe FaceLandmarker
+    
+    Triage: NEEDS_REVIEW | Confidence: HIGH | Needs Review: True | Borderline: True
+  
+    Status: ORTHOTROPIC / PSEUDO-STRABISMUS
+    
+    Deviation Type: None
+    
+    Subtype: NONE
+    
+    Dominant Eye: None
+
+
+
+4.  Mode Selection Notes
 
 Default Mode: Production Baseline (T_iris_asym = 0.105, RollComp=False, CLAHE=False) is configured as the default API mode because it exceeds the 95% accuracy requirement (96.0%) with 0% false-positive 'POSITIVE` alerts and fewer retakes on clean negatives.
 High-Sensitivity Mode: Can be enabled per request (high_sensitivity=true) when maximum positive capture (100.0%) is prioritized.
