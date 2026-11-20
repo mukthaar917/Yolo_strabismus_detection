@@ -68,41 +68,25 @@ YOLO STRABISMUS DETECTION REPORT :
    Dominant Eye: Participant's Right Eye
 
 
-   <img width="512" height="512" alt="result_14" src="https://github.com/user-attachments/assets/6c19b38d-e876-40fd-9822-b753340bf6bb" />
-  
+
+   <img width="512" height="512" alt="result_25" src="https://github.com/user-attachments/assets/1c1965c4-5099-4426-9e08-fdff911af280" />
 
 
-     Eye Locator: MediaPipe FaceLandmarker
+   
+   Eye Locator: MediaPipe FaceLandmarker
+   
+   Triage: NEEDS_REVIEW | Confidence: HIGH | Needs Review: True | Borderline: False
+
+   Status: ORTHOTROPIC / PSEUDO-STRABISMUS
+   
+   Deviation Type: None
+   
+   Subtype: NONE
+   
+   Dominant Eye: None
+
+
      
-     Triage: POSITIVE | Confidence: HIGH | Needs Review: False | Borderline: False
-
-     Status: STRABISMUS DETECTED
-     
-     Deviation Type: HORIZONTAL STRABISMUS
-     
-     Subtype: ESOTROPIA
-     
-     Dominant Eye: Participant's Left Eye
-     
-
-
-    <img width="512" height="512" alt="result_24" src="https://github.com/user-attachments/assets/dd7f7425-0ae1-4cb5-9f1c-81bd1aa38c03" />
-
-
-    Eye Locator: MediaPipe FaceLandmarker
-    
-    Triage: NEEDS_REVIEW | Confidence: HIGH | Needs Review: True | Borderline: True
-  
-    Status: ORTHOTROPIC / PSEUDO-STRABISMUS
-    
-    Deviation Type: None
-    
-    Subtype: NONE
-    
-    Dominant Eye: None
-
-
-
 
 Mode Selection Notes :
 
