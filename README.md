@@ -87,7 +87,27 @@ YOLO STRABISMUS DETECTION REPORT :
 
 
 
-   <img width="512" height="512" alt="result_14" src="https://github.com/user-attachments/assets/c3b8efef-69b8-43df-ac55-f884942ae3dd" />
+   <img width="512" height="512" alt="result_2" src="https://github.com/user-attachments/assets/4f995855-47c7-4ccf-82bb-e70ffcadbe23" />
+
+
+
+
+   Eye Locator: MediaPipe FaceLandmarker
+   
+   Triage: POSITIVE | Confidence: HIGH | Needs Review: False | Borderline: False
+   
+   Status: STRABISMUS DETECTED
+   
+   Deviation Type: HORIZONTAL STRABISMUS
+   
+   Subtype: EXOTROPIA
+   
+   Dominant Eye: Participant's Left Eye
+
+
+
+
+  <img width="512" height="512" alt="result_14" src="https://github.com/user-attachments/assets/c3b8efef-69b8-43df-ac55-f884942ae3dd" />
    
 
 
